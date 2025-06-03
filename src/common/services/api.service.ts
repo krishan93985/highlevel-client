@@ -2,6 +2,7 @@ import axios, { AxiosError, type AxiosInstance, type AxiosResponse, type AxiosRe
 import { z } from 'zod';
 import { ABORT_ERROR_CODE } from '../constants/error';
 import { handleApiError } from '../utils';
+import { environment } from '../config/environment';
 
 interface ApiErrorResponse {
   statusCode: number;
@@ -48,7 +49,7 @@ class ApiService {
 
   constructor() {
     this.client = axios.create({
-      baseURL: 'http://localhost:5000',
+      baseURL: environment.apiBaseUrl,
       headers: {
         'Content-Type': 'application/json',
       },
