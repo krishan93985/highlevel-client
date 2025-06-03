@@ -3,23 +3,28 @@ import type { ErrorMapping, ErrorCode } from "../types/api.types";
 export const ERROR_MAPPINGS: Record<ErrorCode, ErrorMapping> = {
     NOT_FOUND: {
       message: 'The requested resource was not found',
-      toastType: 'error'
+      toastType: 'error',
+      code: 'NOT_FOUND'
     },
     VALIDATION_ERROR: {
       message: 'Please check your input and try again',
-      toastType: 'error'
+      toastType: 'error',
+      code: 'VALIDATION_ERROR'
     },
     INTERNAL_ERROR: {
       message: 'Something went wrong. Please try again later',
-      toastType: 'error'
+      toastType: 'error',
+      code: 'INTERNAL_ERROR'
     },
     UNAUTHORIZED: {
       message: 'Please sign in to continue',
-      toastType: 'error'
+      toastType: 'error',
+      code: 'UNAUTHORIZED'
     },
     FORBIDDEN: {
       message: 'You do not have permission to perform this action',
-      toastType: 'error'
+      toastType: 'error',
+      code: 'FORBIDDEN'
     }
   };
 

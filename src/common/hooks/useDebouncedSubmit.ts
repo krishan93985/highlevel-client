@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import type { UseFormHandleSubmit, FieldValues } from 'react-hook-form';
 import { debounce } from '../utils/debounce.utils';
-import { DEBOUNCE_TIME } from '../constants';
+import { DEBOUNCE_TIME } from '../constants/ui.constants';
 
 export const useDebouncedSubmit = <T extends FieldValues>(
   handleSubmit: UseFormHandleSubmit<T>,

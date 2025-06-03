@@ -3,7 +3,7 @@ import { useWallet } from '../hooks/useWallet';
 import { walletService } from '../services/wallet.service';
 import { useApiPagination } from '../../../common/hooks/useApiPagination';
 import type { BaseTransaction } from '../types/wallet.types';
-import { ITEMS_PER_PAGE } from '../../../common/constants';
+import { ITEMS_PER_PAGE } from '../../../common/constants/ui.constants';
 import { SortField, SortOrder } from '../types/wallet.types';
 import { TransactionSort } from './TransactionSort';
 import { TransactionListSkeleton } from './TransactionListSkeleton';

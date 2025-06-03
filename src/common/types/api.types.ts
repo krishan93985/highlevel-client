@@ -18,4 +18,20 @@ export type ErrorCode =
 export interface ErrorMapping {
   message: string;
   toastType: 'error' | 'success';
+  code: ErrorCode;
+}
+
+export interface ApiErrorResponse {
+  statusCode: number;
+  message: string;
+  error: {
+    code: string;
+  };
+}
+
+export interface ApiResponseWrapper<T> {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: T;
 }

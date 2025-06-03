@@ -1,16 +1,9 @@
 import axios, { AxiosError, type AxiosInstance, type AxiosResponse, type AxiosRequestConfig } from 'axios';
 import { z } from 'zod';
-import { ABORT_ERROR_CODE } from '../constants/error';
+import { ABORT_ERROR_CODE } from '../constants/error.constants';
 import { handleApiError } from '../utils';
 import { environment } from '../config/environment';
-
-interface ApiErrorResponse {
-  statusCode: number;
-  message: string;
-  error: {
-    code: string;
-  };
-}
+import type { ApiErrorResponse, ApiResponseWrapper } from '../types/api.types';
 
 export class ApiError extends Error {
   constructor(
@@ -35,13 +28,6 @@ export class ValidationError extends Error {
     super(message);
     this.name = 'ValidationError';
   }
-}
-
-interface ApiResponseWrapper<T> {
-  success: boolean;
-  statusCode: number;
-  message: string;
-  data: T;
 }
 
 class ApiService {
