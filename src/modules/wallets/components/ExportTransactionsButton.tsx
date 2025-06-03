@@ -6,7 +6,7 @@ import { Button } from '../../../common/components/Button';
 import { downloadBlobAsFile } from '../../../common/utils';
 import { cn } from '../../../common/utils/styles.utils';
 import { SortField, SortOrder } from '../types/wallet.types';
-
+import { toast } from 'react-hot-toast';
 interface ExportTransactionsButtonProps {
   className?: string;
   sortBy?: SortField;
@@ -39,6 +39,7 @@ export const ExportTransactionsButton: React.FC<ExportTransactionsButtonProps> =
       console.error('Failed to export transactions:', error);
       alert('Failed to export transactions. Please try again.');
     } finally {
+      toast.success('Transactions exported successfully');
       setIsExporting(false);
     }
   };

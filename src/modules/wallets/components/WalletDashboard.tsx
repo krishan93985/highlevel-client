@@ -3,6 +3,7 @@ import { useWallet } from '../hooks/useWallet';
 import { WalletTransactionForm } from './WalletTransactionForm';
 import { WalletBalanceSkeleton } from './WalletBalanceSkeleton';
 import { WalletTransactionFormSkeleton } from './WalletTransactionFormSkeleton';
+import { toast } from 'react-hot-toast';
 
 export const WalletDashboard: React.FC = () => {
   const { wallet, isLoading, error, setWalletId, walletId } = useWallet();
@@ -10,7 +11,8 @@ export const WalletDashboard: React.FC = () => {
   const handleTransactionSuccess = async () => {
     if (!walletId) return;
     // Refresh wallet data after successful transaction
-    await setWalletId(walletId);
+    toast.success('Transaction successful');
+    setWalletId(walletId);
   };
 
   if (error) {
