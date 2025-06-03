@@ -31,7 +31,7 @@ export const WalletDashboard: React.FC = () => {
         <div className="bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">{wallet.name}</h2>
           <div className="text-4xl font-semibold text-green-600">
-            ${wallet.balance.toFixed(4)}
+            &#8377;{wallet.balance.toFixed(4)}
           </div>
         </div>
       )}
