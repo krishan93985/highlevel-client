@@ -2,39 +2,10 @@
 
 A modern React application for managing digital wallets and transactions with robust error handling, form validation, and optimized performance.
 
-## Tech Stack
-
-### Frontend Framework & Core
-- **React** - UI library
-- **TypeScript** - Type-safe development
-- **Vite** - Build tool and dev server
-
-### Routing & State Management
-- **React Router v6** - Client-side routing
-- **React Context** - Global state management
-
-### Form Management & Validation
-- **React Hook Form** - Form state management and validation
-- **@hookform/resolvers** - Form validation resolvers
-- **Zod** - Schema validation and type inference
-
-### Styling & UI
-- **TailwindCSS** - Utility-first CSS framework
-- **React Hot Toast** - Toast notifications
-
-### HTTP Client & API
-- **Axios** - HTTP client
-- **AbortController** - Request cancellation
-
-### Development Tools
-- **ESLint** - Code linting
-- **PostCSS** - CSS processing
-- **TypeScript ESLint** - TypeScript-specific linting
-
 ## Table of Contents
 - [Architecture Overview](#architecture-overview)
 - [Features](#features)
-- [Technical Stack](#technical-stack)
+- [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Key Components](#key-components)
 - [Form Management](#form-management)
@@ -67,6 +38,7 @@ src/
 - Real-time balance updates
 - Transaction history with sorting and filtering
 - Wallet selection and context management
+- Persistent wallet sessions using localStorage
 
 Example of wallet dashboard component:
 ```typescript
@@ -86,12 +58,67 @@ export const WalletDashboard: React.FC = () => {
 };
 ```
 
+Example of wallet persistence:
+```typescript
+export const useWalletState = () => {
+  // Initialize wallet ID from localStorage
+  const [walletId, setWalletIdState] = useState<string | null>(() => 
+    localStorage.getItem(WALLET_STORAGE_KEY)
+  );
+
+  const setWalletId = useCallback(async (id: string) => {
+    setWalletIdState(id);
+    // Persist wallet ID to localStorage
+    localStorage.setItem(WALLET_STORAGE_KEY, id);
+    const success = await loadWallet(id);
+    if (!success) {
+      clearWallet();
+    }
+  }, [loadWallet]);
+
+  const clearWallet = useCallback(() => {
+    setWalletIdState(null);
+    // Clear wallet data from localStorage on logout/errors
+    localStorage.removeItem(WALLET_STORAGE_KEY);
+  }, []);
+};
+```
+
 ### Transactions
 - Create new transactions (deposit/withdrawal)
 - Transaction type selection with visual feedback
 - Amount validation with minimum balance checks
 - Transaction history with pagination
 - Export functionality
+
+## Tech Stack
+
+### Frontend Framework & Core
+- **React** - UI library
+- **TypeScript** - Type-safe development
+- **Vite** - Build tool and dev server
+
+### Routing & State Management
+- **React Router v6** - Client-side routing
+- **React Context** - Global state management
+
+### Form Management & Validation
+- **React Hook Form** - Form state management and validation
+- **@hookform/resolvers** - Form validation resolvers
+- **Zod** - Schema validation and type inference
+
+### Styling & UI
+- **TailwindCSS** - Utility-first CSS framework
+- **React Hot Toast** - Toast notifications
+
+### HTTP Client & API
+- **Axios** - HTTP client
+- **AbortController** - Request cancellation
+
+### Development Tools
+- **ESLint** - Code linting
+- **PostCSS** - CSS processing
+- **TypeScript ESLint** - TypeScript-specific linting
 
 ## Form Management
 
@@ -140,12 +167,12 @@ export const transactionSchema = z.object({
 });
 ```
 
-### 3. API Call Optimization
+### API Call Optimization
 - Request cancellation on unmount
 - Pagination with load more button
 - Sort and filter state management
 
-## Technical Considerations and Caveats Handled
+## Technical Considerations and Caveats
 
 1. **Error Handling**
    - Global error boundary for React errors
