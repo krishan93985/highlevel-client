@@ -23,7 +23,9 @@ export const baseTransactionSchema = z.object({
 // Request Validation Schemas
 export const walletSchema = z.object({
   name: z.string().min(1, 'Wallet name is required'),
-  balance: z.number().nonnegative().optional(),
+  balance: z.number({
+    invalid_type_error: 'Please enter a valid amount'
+  }).nonnegative().optional(),
 });
 
 export const transactionSchema = z.object({
