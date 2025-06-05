@@ -2,6 +2,35 @@
 
 A modern React application for managing digital wallets and transactions with robust error handling, form validation, and optimized performance.
 
+## Tech Stack
+
+### Frontend Framework & Core
+- **React** - UI library
+- **TypeScript** - Type-safe development
+- **Vite** - Build tool and dev server
+
+### Routing & State Management
+- **React Router v6** - Client-side routing
+- **React Context** - Global state management
+
+### Form Management & Validation
+- **React Hook Form** - Form state management and validation
+- **@hookform/resolvers** - Form validation resolvers
+- **Zod** - Schema validation and type inference
+
+### Styling & UI
+- **TailwindCSS** - Utility-first CSS framework
+- **React Hot Toast** - Toast notifications
+
+### HTTP Client & API
+- **Axios** - HTTP client
+- **AbortController** - Request cancellation
+
+### Development Tools
+- **ESLint** - Code linting
+- **PostCSS** - CSS processing
+- **TypeScript ESLint** - TypeScript-specific linting
+
 ## Table of Contents
 - [Architecture Overview](#architecture-overview)
 - [Features](#features)
